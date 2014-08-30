@@ -4,7 +4,10 @@
 	<% @users.each do |user| %>
 		<li> 
 			<% if user.first_name %>
-				<%= user.first_name %>
+				<%= user.first_name %> 
+				<% if user.last_name %>
+					<%= user.last_name %>
+				<% end %>
 			<% else %>
 				<%= user.email %>
 			<% end %>
