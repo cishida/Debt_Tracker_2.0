@@ -1,0 +1,7 @@
+<h3> This is 
+	<% if @user.first_name %>
+		<%= @user.first_name %>
+	<% else %>
+		<%= @user.email %>
+	<% end %>
+&#39;s Profile! </h3>

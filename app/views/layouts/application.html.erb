@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>DebtTracker20</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>Debt Tracker 2.0</title>
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	    <%= csrf_meta_tags %>
+	</head>
 
-<%= yield %>
-
-</body>
+	<body>
+		<div class="container">
+			<div id="header">
+				<% if user_signed_in? %>
+					<h1> Debt Tracker 2.0 </h1>
+					<h5> <%= current_user.email %> </h5>
+				<% else %>
+					<h1> Welcome to Debt Tracker 2.0! </h1>
+				<%end%>
+			</div>
+			<% if user_signed_in? %>
+				<div class="navbar">
+	              <div class="navbar-inner">
+	                <div class="container">
+	                  <ul class="nav">
+	                    <li><%= link_to("Home", {:controller => 'home', :action => 'index'}, class: 'right_bar_link') %></li>
+	                    <li><%= link_to("Debts", {:controller => 'debts', :action => 'index'}, class: 'right_bar_link') %></li>
+	                    <li><%= link_to("My Profile", {:controller => 'users', :action => 'profile'}, class: 'right_bar_link') %></li>
+	                    <li><%= link_to("User List", {:controller => 'users', :action => 'index'}, class: 'right_bar_link') %></li>
+	                    <% if user_signed_in? %>
+							<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+						<%end%>
+	                  </ul>
+	                </div>
+	              </div>
+	            </div>
+	        <% else %>
+	        	<div class="navbar">
+	              <div class="navbar-inner">
+	                <div class="container">
+	                  <ul class="nav">
+	                    <li><%= link_to('Login', new_user_session_path) %></li>
+	                    <li><%= link_to('Register', new_user_registration_path)  %></li>
+	                  </ul>
+	                </div>
+	              </div>
+	            </div>
+	        <%end%>
+			<% if !flash[:notice].blank? %>
+				<div id="notice">
+					<%= flash[:notice] %>
+				</div>
+			<%end%>
+			<div class="container">
+				<%= yield %>
+			</div>
+			<div id="footer">
+				<p id="copyright">&copy; Debt Tracker 2.0 / Christopher Ishida </p>
+			</div>
+		</div>
+	</body>
 </html>
