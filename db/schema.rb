@@ -11,17 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830011904) do
+ActiveRecord::Schema.define(version: 20140905210305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "debts", force: true do |t|
-    t.integer  "amount"
-    t.string   "reason"
+    t.integer  "peasant_id"
+    t.integer  "lord_id"
+    t.decimal  "amount"
+    t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "debts_users", id: false, force: true do |t|
+    t.integer "debt_id"
+    t.integer "user_id"
+  end
+
+  add_index "debts_users", ["debt_id", "user_id"], name: "index_debts_users_on_debt_id_and_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

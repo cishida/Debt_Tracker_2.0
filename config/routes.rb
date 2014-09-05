@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'home/index'
+
+  get 'debts/index'
+
+  get 'debts/new'
+
+  get 'debts/edit'
+
+  get 'debts/delete'
 
   devise_for :users
   resources :debts
