@@ -1,2 +1,19 @@
-<h1>Debts#new</h1>
-<p>Find me in app/views/debts/new.html.erb</p>
+<%= link_to("<< Back to List", {controller: :users, action: :index}, :class => 'back-link') %>
+
+<div class="debt new">
+  <h2> Create Debt </h2>
+
+  <h4> <%= name_of(User.find(@peasant)) %> owes <%= name_of(User.find(@lord)) %>: </h4>
+
+  <%= form_for(:debt, :url => {:action => 'create'}, :peasant => @peasant, :lord => @lord) do |f| %>
+
+    <%= render(:partial => "form", :locals => {:f => f} ) %>
+    <%= hidden_field_tag( "peasant", @peasant) %>
+    <%= hidden_field_tag( "lord", @lord) %>
+
+
+    <div class="form-buttons">
+      <%= submit_tag("Create Debt") %>
+    </div>
+  <%end%>
+</div>

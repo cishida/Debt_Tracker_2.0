@@ -5,16 +5,23 @@ class DebtsController < ApplicationController
 
   def new
     @debt = Debt.new
+
+    #If the current user is the lord
+    @lord = params[:lord]
+    @peasant = params[:peasant]
+
   end
 
   def create
-    @debt = Debt.new debt_params
-
-    if @debt.save
+    debt = Debt.new debt_params
+    debt.peasant = User.find(params[:peasant])
+    debt.lord = User.find(params[:lord])
+    if debt.save
       flash[:notice] = "Debt created successfully"
       redirect_to(action: 'index')
     else
-      render 'new'
+      flash[:notice] = "Debt creation failed, Chris probably screwed up somewhere" + "#{debt.peasant} what"
+      redirect_to(controller: :users, action: :index)
     end
   end
 
