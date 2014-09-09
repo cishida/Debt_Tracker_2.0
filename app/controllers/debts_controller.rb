@@ -1,9 +1,14 @@
 class DebtsController < ApplicationController
   def index
-    @debts = Debt.all
+    @debts = Debt.where(paid: false)
   end
 
   def history
+    if params[:pay]
+      @debt = Debt.find(params[:id])
+      @debt.paid = true
+      @debt.save
+    end
     @debts = Debt.where(paid: true)
   end
 
@@ -24,7 +29,7 @@ class DebtsController < ApplicationController
       flash[:notice] = "Debt created successfully"
       redirect_to(action: 'index')
     else
-      flash[:notice] = "Debt creation failed, Chris probably screwed up somewhere" + "#{debt.peasant} what"
+      flash[:notice] = "Debt creation failed, Chris probably screwed up somewhere"
       redirect_to(controller: :users, action: :index)
     end
   end
@@ -55,11 +60,9 @@ class DebtsController < ApplicationController
     redirect_to(action: 'index')
   end
 
-
-
   private
 
   def debt_params
-    params.require(:debt).permit(:amount, :reason, :peasant, :lord)
+    params.require(:debt).permit(:amount, :reason, :peasant, :lord, :paid)
   end
 end

@@ -1,14 +1,19 @@
 <h1> List Of All Current Debts </h1>
 
 <div class="hero-unit">
-  <ul>
+  <table>
     <% @debts.each do |debt| %>
-      <li> 
-        <%= link_to(name_of(debt.peasant), '#') %>
-        owes 
-        <%= link_to(name_of(debt.lord), '#') %>
-        $<%= debt.amount %> for <%= debt.reason %>
-      </li>
+      <tr>
+        <td> 
+          <%= link_to(name_of(debt.peasant), '#') %>
+          owes 
+          <%= link_to(name_of(debt.lord), '#') %>
+          $<%= debt.amount %> for <%= debt.reason %>
+        </td>
+        <td>
+          <%= link_to('Pay', {action: :history, pay: true, id: debt.id}, class: 'btn btn-danger') %>
+        </td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 </div>

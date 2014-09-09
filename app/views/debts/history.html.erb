@@ -1,16 +1,18 @@
 <h1> List Of All Past Debts </h1>
-<% if !@debts %>
-  There are no past debts yet
-<% end %>
 
 <div class="hero-unit">
+  <% if @debts.empty? %>
+    There are no past debts yet
+  <% end %>
   <ul>
     <% @debts.each do |debt| %>
       <li> 
-        <%= link_to(name_of(debt.peasant), '#') %>
-        owes 
-        <%= link_to(name_of(debt.lord), '#') %>
-        $<%= debt.amount %> for <%= debt.reason %>
+        <strike>
+          <%= link_to(name_of(debt.peasant), '#') %>
+          owed
+          <%= link_to(name_of(debt.lord), '#') %>
+          $<%= debt.amount %> for <%= debt.reason %>
+        </strike>
       </li>
     <% end %>
   </ul>
