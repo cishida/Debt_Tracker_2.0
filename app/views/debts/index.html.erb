@@ -8,10 +8,12 @@
           <%= link_to(name_of(debt.peasant), '#') %>
           owes 
           <%= link_to(name_of(debt.lord), '#') %>
-          $<%= debt.amount %> for <%= debt.reason %>
+          <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
         </td>
         <td>
-          <%= link_to('Pay', {action: :history, pay: true, id: debt.id}, class: 'btn btn-danger') %>
+          <% if current_user == debt.peasant || current_user == debt.lord %>
+            <%= link_to('Mark as paid', {action: :history, pay: true, id: debt.id}, class: 'btn btn-danger') %>
+          <% end %>
         </td>
       </tr>
     <% end %>

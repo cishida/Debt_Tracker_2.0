@@ -11,8 +11,9 @@
           <%= link_to(name_of(debt.peasant), '#') %>
           owed
           <%= link_to(name_of(debt.lord), '#') %>
-          $<%= debt.amount %> for <%= debt.reason %>
+          <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
         </strike>
+        <small> Paid on <%= debt.updated_at.to_date %> </small>
       </li>
     <% end %>
   </ul>

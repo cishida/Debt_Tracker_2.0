@@ -5,5 +5,23 @@
 		<div class="span4">
 			<%= link_to("Change name", :action => 'edit_name') %>
 		</div>
+    <div class="span6">
+      <h4> These are your debts </h4>
+       <table>
+        <% @debts.each do |debt| %>
+          <tr>
+            <td> 
+              <%= link_to(name_of(debt.peasant), '#') %>
+              owes 
+              <%= link_to(name_of(debt.lord), '#') %>
+              <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
+            </td>
+            <td>
+              <%= link_to('Mark as paid', {controller: :debts, action: :history, pay: true, id: debt.id}, class: 'btn btn-danger') %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
 	</div>
 </div>

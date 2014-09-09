@@ -1,1 +1,3 @@
-== README
+== README ==
+
+A small debt tracking application for my apartment
