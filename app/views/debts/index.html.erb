@@ -1,29 +1,13 @@
-<h1> List Of All Debts </h1>
+<h1> List Of All Current Debts </h1>
 
 <div class="hero-unit">
   <ul>
     <% @debts.each do |debt| %>
       <li> 
-        <% if debt.peasant.first_name %>
-          <% if debt.peasant.last_name %>
-            <%= link_to(debt.peasant.first_name + ' ' + debt.peasant.last_name, '#') %> 
-          <% else %>
-            <%= link_to(debt.peasant.first_name, '#') %>
-          <% end %>
-        <% else %>
-          <%= link_to(debt.peasant.email, '#') %>
-        <% end %>
+        <%= link_to(name_of(debt.peasant), '#') %>
         owes 
-        <% if debt.lord.first_name %>
-          <% if debt.lord.last_name %>
-            <%= link_to(debt.lord.first_name + ' ' + debt.lord.last_name, '#') %> 
-          <% else %>
-            <%= link_to(debt.lord.first_name, '#') %>
-          <% end %>
-        <% else %>
-          <%= link_to(debt.lord.email, '#') %>
-        <% end %>
-        <%= debt.amount %> dollars 
+        <%= link_to(name_of(debt.lord), '#') %>
+        $<%= debt.amount %> for <%= debt.reason %>
       </li>
     <% end %>
   </ul>

@@ -26,7 +26,9 @@
                 <li><%= link_to("Debts", {:controller => 'debts', :action => 'index'}, class: 'right_bar_link') %></li>
                 <li><%= link_to("My Profile", {:controller => 'users', :action => 'profile'}, class: 'right_bar_link') %></li>
                 <li><%= link_to("User List", {:controller => 'users', :action => 'index'}, class: 'right_bar_link') %></li>
+                <li><%= link_to("Debt History", {:controller => 'debts', :action => 'history'}, class: 'right_bar_link') %></li>
                 <% if user_signed_in? %>
+
 									<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 								<%end%>
 	              </ul>

@@ -16,6 +16,7 @@ class DebtsController < ApplicationController
     debt = Debt.new debt_params
     debt.peasant = User.find(params[:peasant])
     debt.lord = User.find(params[:lord])
+    
     if debt.save
       flash[:notice] = "Debt created successfully"
       redirect_to(action: 'index')
