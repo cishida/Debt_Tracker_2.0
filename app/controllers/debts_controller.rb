@@ -3,10 +3,13 @@ class DebtsController < ApplicationController
     @debts = Debt.all
   end
 
+  def history
+    @debts = Debt.where(paid: true)
+  end
+
   def new
     @debt = Debt.new
 
-    #If the current user is the lord
     @lord = params[:lord]
     @peasant = params[:peasant]
 
@@ -51,6 +54,8 @@ class DebtsController < ApplicationController
     flash[:notice] = "Debt destroyed successfully"
     redirect_to(action: 'index')
   end
+
+
 
   private
 
