@@ -6,10 +6,9 @@ class UsersController < ApplicationController
 
 	def profile
 		@user = current_user
-		@debts = Debt.where(peasant: @user)
-		@loans = Debt.where(lord: @user)
+		@debts = Debt.where(peasant: @user).where(paid: false)
+		@loans = Debt.where(lord: @user).where(paid: false)
 
-		@debts = @debts + @loans
 	end
 
 	def edit_name

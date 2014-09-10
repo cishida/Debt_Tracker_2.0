@@ -18,3 +18,7 @@ body {
 
   min-height: 1000px;
 }
+
+table tr th, table tr td { 
+  vertical-align: top; text-align: left; padding: 3px; 
+}
