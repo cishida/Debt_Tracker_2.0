@@ -4,17 +4,21 @@
   <% if @debts.empty? %>
     There are no past debts yet
   <% end %>
-  <ul>
+  <table>
     <% @debts.each do |debt| %>
-      <li> 
-        <strike>
-          <%= link_to(name_of(debt.peasant), '#') %>
-          paid
-          <%= link_to(name_of(debt.lord), '#') %>
-          <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
-        </strike>
-        <small> Paid on <%= debt.updated_at.to_date %> </small>
-      </li>
+      <tr>
+        <td class="span8">
+          <!--strike-->
+            <%= link_to(name_of(debt.peasant), {:controller => 'users', :action => 'profile', :id => debt.peasant.id}) %>
+            paid
+            <%= link_to(name_of(debt.lord), {:controller => 'users', :action => 'profile', :id => debt.lord.id}) %>
+            <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
+          <!--/strike-->
+        </td>
+        <td>
+          <small> Paid on <%= debt.updated_at.to_date %> </small>
+        </td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 </div>

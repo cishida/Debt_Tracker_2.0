@@ -9,22 +9,14 @@
 
 	<body>
 		<div class="container">
-			<div id="header">
-				<% if user_signed_in? %>
-					<h1> Debt Tracker 2.0 </h1>
-					<h5> <%= current_user.email %> </h5>
-				<% else %>
-					<h1> Welcome to Debt Tracker 2.0! </h1>
-				<%end%>
-			</div>
 			<% if user_signed_in? %>
-				<div class="navbar">
+				<div class="navbar navbar-fixed-top navbar-default">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
                 <li><%= link_to("Home", {:controller => 'home', :action => 'index'}, class: 'right_bar_link') %></li>
                 <li><%= link_to("Debts", {:controller => 'debts', :action => 'index'}, class: 'right_bar_link') %></li>
-                <li><%= link_to("My Profile", {:controller => 'users', :action => 'profile'}, class: 'right_bar_link') %></li>
+                <li><%= link_to("My Profile", {:controller => 'users', :action => 'profile', :id => current_user.id}, class: 'right_bar_link') %></li>
                 <li><%= link_to("User List", {:controller => 'users', :action => 'index'}, class: 'right_bar_link') %></li>
                 <li><%= link_to("Debt History", {:controller => 'debts', :action => 'history'}, class: 'right_bar_link') %></li>
                 <% if user_signed_in? %>
@@ -36,7 +28,7 @@
 	          </div>
 	        </div>
 	    <% else %>
-      	<div class="navbar">
+      	<div class="navbar navbar-fixed-top navbar-default">
             <div class="navbar-inner">
               <div class="container">
                 <ul class="nav">
@@ -47,6 +39,14 @@
             </div>
           </div>
       <%end%>
+      <div id="header">
+        <% if user_signed_in? %>
+          <h1> Debt Tracker 2.0 </h1>
+          <h5> Signed in as <%= name_of(current_user) %> </h5>
+        <% else %>
+          <h1> Welcome to Debt Tracker 2.0! </h1>
+        <%end%>
+      </div>
 			<% if !flash[:notice].blank? %>
 				<div id="notice">
 					<%= flash[:notice] %>

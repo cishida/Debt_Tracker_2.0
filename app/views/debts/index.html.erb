@@ -1,21 +1,29 @@
 <h1> List Of All Current Debts </h1>
 
 <div class="hero-unit">
-  <table>
-    <% @debts.each do |debt| %>
-      <tr>
-        <td> 
-          <%= link_to(name_of(debt.peasant), '#') %>
-          owes 
-          <%= link_to(name_of(debt.lord), '#') %>
-          <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
-        </td>
-        <td>
-          <% if current_user == debt.peasant || current_user == debt.lord %>
-            <%= link_to('Mark as paid', {action: :history, pay: true, id: debt.id}, class: 'btn btn-danger') %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="container">
+    <table>
+      <% @debts.each do |debt| %>
+        <tr>
+          <td class="span8"> 
+            <%= link_to(name_of(debt.peasant), {:controller => 'users', :action => 'profile', :id => debt.peasant.id}) %>
+            owes 
+            <%= link_to(name_of(debt.lord), {:controller => 'users', :action => 'profile', :id => debt.lord.id}) %>
+            for <%= debt.reason %>
+            <ul>
+              <li> Debt created on <%= debt.created_at.to_date %> </li>
+            </ul>
+          </td>
+          <td>
+            <%= number_to_currency(debt.amount) %>
+          </td>
+          <td>
+            <% if current_user == debt.peasant || current_user == debt.lord %>
+              <%= link_to('Mark Paid', {action: :history, pay: true, id: debt.id}, class: 'btn btn-danger') %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

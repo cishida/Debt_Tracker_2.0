@@ -21,4 +21,27 @@ body {
 
 table tr th, table tr td { 
   vertical-align: top; text-align: left; padding: 3px; 
+  border-top: 1px solid black;
 }
+
+table {
+  text-align: left;
+}
+
+.debt_listing {
+}
+
+hr { 
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #ccc;
+  margin: 1em 0; padding: 0; 
+}
+
+.navbar .container { min-height: 50px; }
+
+.navbar-fixed-top {
+    margin-bottom:20px;
+    }
+
+    #notice { height: 1.25em; padding: 0.5em; text-align: center;
+  background: green; color: #4C2516; }

@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 	end
 
 	def profile
-		@user = current_user
-		@debts = Debt.where(peasant: @user).where(paid: false)
-		@loans = Debt.where(lord: @user).where(paid: false)
+		@user = User.find(params[:id])
+		@debts = Debt.where(peasant: @user).where(paid: false).sorted
+		@loans = Debt.where(lord: @user).where(paid: false).sorted
 
 	end
 

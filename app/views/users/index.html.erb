@@ -1,14 +1,14 @@
-<h3> User List </h3>
-
 <div class="hero-unit">
+	<h3> User List </h3>
 	<table id="users_list">
 		<% @users.each do |user| %>
 			<tr> 
-				<td id='users_list_name'>
-					<%= link_to(name_of(user), '#') %>
+				<td id='users_list_name' class="span8">
+					<%= link_to(name_of(user), {:controller => 'users', :action => 'profile', :id => user.id}) %>
 				</td>
 				<% if user.id == current_user.id %>
 					<td> This is you... </td>
+					<td></td>
 				<% else %>
 					<td> <%= link_to('Charge', {controller: :debts, action: :new, peasant: user, lord: current_user}, class: 'btn btn-success') %> </td>
 					<td> <%= link_to('Owe', {controller: :debts, action: :new, peasant: current_user, lord: user}, class: 'btn btn-danger') %> </td>

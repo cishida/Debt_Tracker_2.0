@@ -1,15 +1,17 @@
 class DebtsController < ApplicationController
   def index
-    @debts = Debt.where(paid: false)
+    @debts = Debt.where(paid: false).sorted
   end
 
   def history
     if params[:pay]
       @debt = Debt.find(params[:id])
       @debt.paid = true
-      @debt.save
+      if @debt.save
+        flash[:notice] = "Debt paid successfully"
+      end
     end
-    @debts = Debt.where(paid: true)
+    @debts = Debt.where(paid: true).sorted_paid
   end
 
   def new

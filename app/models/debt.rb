@@ -8,4 +8,7 @@ class Debt < ActiveRecord::Base
   belongs_to :lord,
     :class_name => "User",
     :foreign_key => :lord_id
+
+  scope :sorted, lambda { order("debts.created_at DESC") }
+  scope :sorted_paid, lambda { order("debts.updated_at DESC") }
 end
