@@ -37,11 +37,28 @@ hr {
   margin: 1em 0; padding: 0; 
 }
 
-.navbar .container { min-height: 50px; }
+.navbar .container { 
+  min-height: 50px; 
+}
 
 .navbar-fixed-top {
-    margin-bottom:20px;
-    }
+  margin-bottom:20px;
+}
 
-    #notice { height: 1.25em; padding: 0.5em; text-align: center;
-  background: green; color: #4C2516; }
+.navbar-inner {
+  background:transparent;
+}
+
+#notice { height: 1.25em; padding: 0.5em; text-align: center;
+  background: green; color: #4C2516; 
+}
+
+
+
+
+
+
+
+
+
+

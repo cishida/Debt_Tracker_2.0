@@ -41,10 +41,10 @@
       <%end%>
       <div id="header">
         <% if user_signed_in? %>
-          <h1> Debt Tracker 2.0 </h1>
+          <h1 style="min-height: 40px;">  </h1>
           <h5> Signed in as <%= name_of(current_user) %> </h5>
         <% else %>
-          <h1> Welcome to Debt Tracker 2.0! </h1>
+          <h1 style="min-height: 40px;">  </h1>
         <%end%>
       </div>
 			<% if !flash[:notice].blank? %>
