@@ -1,9 +1,9 @@
-<%= link_to("Back to Profile", {:action => 'profile', id: current_user.id}, :class => 'back-link') %>
+<%= link_to("Back to Profile", {:action => 'profile', id: @user.id}, :class => 'back-link') %>
 
 <div class="user name edit">
 	<h2> Update Name </h2>
 
-	<%= form_for(:user, :url => {:action => 'update_name'}, id: current_user.id) do |f| %>
+	<%= form_for(:user, :url => {:action => 'update_name', id: @user.id} ) do |f| %>
 
 	<table summary="Subject form fields">
 		<tr>
