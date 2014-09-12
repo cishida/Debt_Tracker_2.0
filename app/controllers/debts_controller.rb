@@ -1,4 +1,6 @@
 class DebtsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @debts = Debt.where(paid: false).sorted
   end
