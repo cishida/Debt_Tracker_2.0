@@ -1,7 +1,7 @@
 <table summary="Debt form fields">
   <tr>
     <th> <%= f.label(:amount, "Amount") %> </th>
-    <td> <%= f.text_field(:amount) %> </td>
+    <td> <%= f.text_field(:amount, :maxlength => 10) %> </td>
   </tr>
   <tr>
     <th> <%= f.label(:reason, "For:") %> </th>
