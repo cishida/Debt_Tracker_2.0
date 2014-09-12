@@ -11,7 +11,7 @@
             <%= link_to(name_of(debt.lord), {:controller => 'users', :action => 'profile', :id => debt.lord.id}) %>
             for <%= debt.reason %>
             <ul>
-              <li> Debt created on <%= debt.created_at.to_date %> </li>
+              <li> Debt created on <%= debt.created_at.strftime("%B, %d, %Y") %> </li>
             </ul>
           </td>
           <td>

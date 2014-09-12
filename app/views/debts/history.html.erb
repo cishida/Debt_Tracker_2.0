@@ -16,7 +16,7 @@
           <!--/strike-->
         </td>
         <td>
-          <small> Paid on <%= debt.updated_at.to_date %> </small>
+          <small> Paid  <%= debt.updated_at.strftime("%B, %d, %Y") %> </small>
         </td>
       </tr>
     <% end %>

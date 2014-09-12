@@ -1,15 +1,25 @@
 <div class="hero-unit">
-  <% if @user == current_user %>
-    <h2> This is your Profile! </h2>
-	  <h3> <%= name_of(current_user) %> </h3>
-  <% else %>
-    <h2> This is <%= name_of(@user) %>'s Profile </h2>
-    <h3> <%= name_of(@user) %> </h3>
-  <% end %>
-	<div class="row">
-		<div class="span3">
-			<%= link_to("Change name", :action => 'edit_name') %>
-		</div>
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <% if @user == current_user %>
+          <h2> This is your Profile! </h2>
+      	  <h3> <%= name_of(current_user) %> </h3>
+        <% else %>
+          <h2> This is <%= name_of(@user) %>'s Profile </h2>
+          <h3> <%= name_of(@user) %> </h3>
+        <% end %>
+      	<div class="row">
+      		<div class="span3">
+      			<%= link_to("Change name", :action => 'edit_name') %>
+      		</div>
+        </div>
+      </div>
+
+      <div class="span4">
+        Profile picture eventually haha.
+      </div>
+    </div>
   </div>
 </div>
 <div class="container">
@@ -36,7 +46,8 @@
                   <%= name_of(@user) %> owes
                 <% end %>
                 <%= link_to(name_of(debt.lord), {:controller => 'users', :action => 'profile', :id => debt.lord.id}) %>
-                <%= number_to_currency(debt.amount) %> for <%= debt.reason %>
+                <%= number_to_currency(debt.amount) %> for <%= debt.reason %><br>
+                <small class="tabbed"> Created on <%= debt.created_at.strftime("%B, %d, %Y") %> </small>
               </td>
               <td>
                 <% if @user == current_user %>
@@ -71,7 +82,8 @@
                 <% else %>
                   <%= name_of(@user) %>
                 <% end %>
-                <%= number_to_currency(loan.amount) %> for <%= loan.reason %>
+                <%= number_to_currency(loan.amount) %> for <%= loan.reason %> <br>
+                <small class="tabbed"> Created on <%= loan.created_at.strftime("%B, %d, %Y") %> </small>
               </td>
               <td>
                 <% if @user == current_user %>
