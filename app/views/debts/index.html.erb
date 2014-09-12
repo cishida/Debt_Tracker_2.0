@@ -1,5 +1,7 @@
 <h1> List Of All Current Debts </h1>
-
+<% if @debts.empty? %>
+  There are no debts yet...
+<% end %>
 <div class="hero-unit">
   <div class="container">
     <table>
