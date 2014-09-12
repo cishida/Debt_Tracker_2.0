@@ -7,6 +7,12 @@
       	  <h3> <%= name_of(current_user) %> </h3>
         <% else %>
           <h2> This is <%= name_of(@user) %>'s Profile </h2>
+          <table>
+            <tr>
+              <td> <%= link_to('Charge', {controller: :debts, action: :new, peasant: @user, lord: current_user}, class: 'btn btn-success') %> </td>
+              <td> <%= link_to('Owe', {controller: :debts, action: :new, peasant: current_user, lord: @user}, class: 'btn btn-danger') %> </td>
+            </tr>
+          </table>
           <h3> <%= name_of(@user) %> </h3>
         <% end %>
       	<div class="row">
