@@ -1,5 +1,6 @@
 class Debt < ActiveRecord::Base
   validates :peasant, :lord, :amount, :reason, presence: true
+  validates_inclusion_of :amount, :in => 1..999999999
   
   belongs_to :peasant,
     :class_name => "User",
